@@ -9,6 +9,10 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Animator animator;
 
+    [SerializeField] private KeyCode rightKeyCode = KeyCode.D;
+    [SerializeField] private KeyCode leftKeyCode = KeyCode.A;
+    [SerializeField] private KeyCode jumpKeyCode = KeyCode.W;
+
     private bool canJump = true;
 
     float horizontalMovement;
@@ -23,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update() // INPUTS GO HERE - Makes them more responsive
     {
-        if (Input.GetKeyDown(KeyCode.Space) && canJump)
+        if (Input.GetKeyDown(jumpKeyCode) && canJump)
         {
             rb.AddForce(new Vector2(0, jumpForce));
             canJump = false;
@@ -31,7 +35,16 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("IsJumping", true);
         }
 
-        horizontalMovement = Input.GetAxisRaw("Horizontal") * speed;
+        horizontalMovement = 0.0f;
+        if (Input.GetKey(rightKeyCode))
+        {
+            horizontalMovement += 1.0f;
+        }
+        if (Input.GetKey(leftKeyCode))
+        {
+            horizontalMovement -= 1.0f;
+        }
+        horizontalMovement = horizontalMovement * speed;
 
         if (horizontalMovement < 0)
         {
