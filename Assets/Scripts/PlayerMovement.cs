@@ -7,13 +7,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 500;
     [SerializeField] private SpriteRenderer sprite;
 
+    [SerializeField] private Animator animator;
+
     private bool canJump = true;
 
     float horizontalMovement;
 
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         
+        animator = GetComponent<Animator>();
+        animator.SetFloat("Direction", 1.0f);
     }
 
     void Update() // INPUTS GO HERE - Makes them more responsive
@@ -22,18 +27,23 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(new Vector2(0, jumpForce));
             canJump = false;
+
+            animator.SetBool("IsJumping", true);
         }
 
         horizontalMovement = Input.GetAxisRaw("Horizontal") * speed;
 
         if (horizontalMovement < 0)
         {
-            sprite.flipX = true;
+            animator.SetFloat("Direction", -1.0f);
         }
         else if (horizontalMovement > 0)
         {
-            sprite.flipX = false;
+            animator.SetFloat("Direction", 1.0f);
         }
+
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMovement));
+        animator.SetBool("IsFalling", rb.linearVelocityY < -0.2f);
     }
 
     private void FixedUpdate() // PHYSICS GO HERE - So movement is not tied to FPS
@@ -44,5 +54,8 @@ public class PlayerMovement : MonoBehaviour
     public void LandedOnGround()
     {
         canJump = true;
+
+        animator.SetBool("IsJumping", false);
+        animator.SetBool("IsFalling", false);
     }
 }
