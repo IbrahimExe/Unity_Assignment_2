@@ -7,6 +7,9 @@ TagManager:
   - Platform
   - P1
   - P2
+  - Fire
+  - Slime
+  - Gem
   layers:
   - Default
   - TransparentFX
