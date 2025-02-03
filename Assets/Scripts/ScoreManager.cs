@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
     public int totalGemsRequired = 6;
     private int gemsCollected = 0;
 
-    private int playersAtFinish = 0; // Track how many players are at the finish
+    private int playersAtFinish = 0; 
 
     [SerializeField] public GameObject winScreen;
     [SerializeField] public GameObject loseScreen;
@@ -19,9 +19,9 @@ public class ScoreManager : MonoBehaviour
     {
         UpdateGemCounter();
 
-        if (winScreen != null) winScreen.SetActive(false); // Hide the win screen at the start
+        if (winScreen != null) winScreen.SetActive(false); 
         if (loseScreen != null) loseScreen.SetActive(false);
-        UpdateGemCounter(); // Initialize the gem counter UI
+        UpdateGemCounter(); 
     }
 
     public void CollectGem()

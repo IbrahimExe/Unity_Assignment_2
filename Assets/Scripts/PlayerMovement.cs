@@ -84,14 +84,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (other.CompareTag("Gem"))
         {
-            Destroy(other.gameObject); // Remove the gem
-            scoreManager.CollectGem(); // Notify the ScoreManager
+            Destroy(other.gameObject); 
+            scoreManager.CollectGem(); 
         }
 
         if (other.CompareTag("Finish") && !isAtFinish)
         {
             isAtFinish = true;
-            scoreManager.PlayerReachedFinish(); // Notify the ScoreManager
+            scoreManager.PlayerReachedFinish(); 
         }
 
         // Death Logic
@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
             (gameObject.CompareTag("P2") && other.CompareTag("Fire")))
         {
             isDead = true;
-            scoreManager.PlayerDied(); // Notify ScoreManager of death
+            scoreManager.PlayerDied(); 
         }
     }
 
@@ -108,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("Finish") && isAtFinish)
         {
             isAtFinish = false;
-            scoreManager.PlayerLeftFinish(); // Notify if the player leaves the finish area
+            scoreManager.PlayerLeftFinish(); 
         }
     }
 }
