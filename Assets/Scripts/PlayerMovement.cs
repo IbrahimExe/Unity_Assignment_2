@@ -84,8 +84,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (other.CompareTag("Gem"))
         {
-            Destroy(other.gameObject); 
-            scoreManager.CollectGem(); 
+            //Destroy(other.gameObject); 
+            scoreManager.CollectGem();
+            Destroy(other.gameObject);
         }
 
         if (other.CompareTag("Finish") && !isAtFinish)
