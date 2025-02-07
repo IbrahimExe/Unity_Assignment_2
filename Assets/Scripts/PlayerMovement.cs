@@ -86,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //Destroy(other.gameObject); 
             scoreManager.CollectGem();
+            other.tag = "Untagged";
             Destroy(other.gameObject);
         }
 
